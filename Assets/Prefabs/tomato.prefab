@@ -148,3 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 4
+  damageParticle: {fileID: 2855267892820922120, guid: 5a2de50e59a64b1479955d94b2fca376,
+    type: 3}

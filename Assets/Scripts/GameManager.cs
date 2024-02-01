@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Card;
+using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private WeightedList<CardSO> weightedCardList;
     private CardSO[] chosenCards = new CardSO[3];
+    private PlayerMovement playerMovement;
     
     public static GameManager instance { get; private set; }
 
@@ -31,12 +33,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        playerMovement = player.GetComponent<PlayerMovement>();
         weightedCardList = new WeightedList<CardSO>();
         foreach (var card in cards)
         {
             weightedCardList.Add(card, card.weight);
         }
-
+        
         Choose3RandomCard();
     }
 
@@ -60,14 +63,16 @@ public class GameManager : MonoBehaviour
             perk.Upgrade(_player);
         }
         _player.UpdateStats();
-        Time.timeScale = 1;
         endWavePage.SetActive(false);
+        playerMovement.joystick.gameObject.SetActive(true);
         Choose3RandomCard();
+        Time.timeScale = 1;
     }
 
     public void OpenEndWavePage()
     {
         Time.timeScale = 0;
+        playerMovement.joystick.gameObject.SetActive(false);
         endWavePage.SetActive(true);
     }
 
@@ -82,26 +87,4 @@ public class GameManager : MonoBehaviour
             iconsUI[i].GetComponent<UnityEngine.UI.Image>().sprite = card.icon;
         }
     }
-
-    // private void CheckAllSpawners()
-    // {
-    //     var notFinishedSpawners = spawners.Where(s => s.finishedAllWaves == false).ToList();
-    //     if (notFinishedSpawners.Count <= 0) { return; } // level passed
-    //
-    //     bool readyAllSpawners = !spawners.Any(s => s.waves.ElementAtOrDefault(s.currentWaveIndex)?.enemiesLeft > 0);
-    //     if (readyAllSpawners)
-    //     {
-    //         foreach (var spawner in spawners)
-    //         {
-    //             spawner.readyForNextWave = true;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         foreach (var spawner in spawners)
-    //         {
-    //             spawner.readyForNextWave = false;
-    //         }
-    //     }
-    // }
 }

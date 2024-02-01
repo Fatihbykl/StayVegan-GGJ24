@@ -7,6 +7,7 @@ namespace Player
     {
         public float speed = 1;
         public float turnSmoothTime = 0.1f;
+        public FloatingJoystick joystick;
         
         private CharacterController characterController;
         private InputAction moveAction;
@@ -24,8 +25,8 @@ namespace Player
         void Update()
         {
             var input = moveAction.ReadValue<Vector2>();
-            float horizontal = input.x;
-            float vertical = input.y;
+            float horizontal = joystick.Horizontal;
+            float vertical = joystick.Vertical;
             
             direction = new Vector3(horizontal, 0f, vertical).normalized;
             if (direction.magnitude >= 0.1f)

@@ -5,10 +5,11 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public GameObject player;
-    public bool readyToCountDown;
+    public BoxCollider gameBounds;
     public Wave[] waves;
-    public int currentWaveIndex = 0;
 
+    [HideInInspector] public int currentWaveIndex = 0;
+    private bool readyToCountDown;
     private float countdown;
     
     private void Start()
@@ -51,13 +52,19 @@ public class WaveManager : MonoBehaviour
     }
     private IEnumerator SpawnWave()
     {
+        Bounds bounds = gameBounds.bounds;
         if (currentWaveIndex < waves.Length)
         {
             for (int i = 0; i < waves.ElementAtOrDefault(currentWaveIndex)?.enemies.Length; i++)
             {
-                var randomPosition = new Vector3(Random.Range(-19, 20), 1f, Random.Range(-45, 46));
-                var enemy = Instantiate(waves[currentWaveIndex].enemies[i], randomPosition, Quaternion.identity);
+                float offsetX = Random.Range(-bounds.extents.x, bounds.extents.x);
+                float offsetY = Random.Range(-bounds.extents.y, bounds.extents.y);
+                float offsetZ = Random.Range(-bounds.extents.z, bounds.extents.z);
+                //var randomPosition = new Vector3(Random.Range(-19, 20), 1f, Random.Range(-45, 46));
+                var enemy = Instantiate(waves[currentWaveIndex].enemies[i]);
+                enemy.transform.position = bounds.center + new Vector3(offsetX, offsetY, offsetZ);
                 enemy.transform.parent = this.gameObject.transform;
+                
                 yield return new WaitForSeconds(waves[currentWaveIndex].timeToNextEnemy);
             }
         }

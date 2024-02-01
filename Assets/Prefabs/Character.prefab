@@ -637,12 +637,13 @@ MonoBehaviour:
     type: 3}
   projectileSpeed: 25
   projectileSpawnLocation: {fileID: 156426181285474920}
+  eatingSound: {fileID: 8300000, guid: 607ff1c3f936a4a4d91ae1882710d5ff, type: 3}
   health: 100
   maxHealth: 100
   lockedEnemyCount: 1
   damageReducePercent: 0
   movementSpeed: 0
-  attackRange: 5
+  attackRange: 6
   attackCooldown: 1
 --- !u!1 &1343724740385054269
 GameObject:
@@ -1548,7 +1549,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17e730fed2022994783b1ab6642518a7, type: 2}
+  - {fileID: 2100000, guid: a72d47647d248354ba73908dca76f73c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

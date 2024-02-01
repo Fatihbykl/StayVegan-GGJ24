@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Enemy
 {
@@ -22,6 +23,7 @@ namespace Enemy
         private WaveManager waveManager;
         private GameObject target;
         private Animator animator;
+        private NavMeshAgent agent;
 
         private void Start()
         {
@@ -29,6 +31,7 @@ namespace Enemy
             waveManager = GetComponentInParent<WaveManager>();
             target = GameManager.instance.player;
             animator = GetComponent<Animator>();
+            agent = GetComponent<NavMeshAgent>();
         }
 
         private void Update()
@@ -38,29 +41,28 @@ namespace Enemy
 
         private void ChaseTarget()
         {
-            var distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance <= stoppingDistance)
+            agent.SetDestination(target.transform.position);
+            if(agent.pathPending) { return; }
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 animator.SetBool("Moving", false);
-                Attack();
+
+                if (Time.time - lastAttackTime >= attackCooldown)
+                {
+                    lastAttackTime = Time.time;
+                    animator.SetTrigger("Attack");
+                }
             }
             else
             {
                 animator.SetBool("Moving", true);
-                var targetPos = new Vector3(target.transform.position.x, transform.position.y,
-                    target.transform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-                transform.LookAt(target.transform.position, Vector3.up);
             }
         }
 
-        private void Attack()
+        public void Attack()
         {
-            if (Time.time - lastAttackTime >= attackCooldown)
-            {
-                target.GetComponent<IDamageable>().TakeDamage(damage);
-                lastAttackTime = Time.time;
-            }
+            target.GetComponent<IDamageable>().TakeDamage(damage);
         }
 
         public void TakeDamage(int _damage)
@@ -86,11 +88,14 @@ namespace Enemy
         private async void Die()
         {
             if (this.gameObject == null) { return; }
-            speed = 0;
+            
+            agent.isStopped = true;
             animator.SetTrigger("Dying");
+            GetComponent<BoxCollider>().enabled = false;
+            
             await UniTask.WaitForSeconds(1f);
-            this.gameObject.SetActive(false);
-            Destroy(gameObject.transform.parent.gameObject, 0.5f);
+            
+            Destroy(gameObject, 0.5f);
         }
 
         private void OnDestroy()
