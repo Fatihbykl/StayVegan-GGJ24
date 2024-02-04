@@ -17,6 +17,7 @@ namespace Enemy
         public float blinkIntensity;
         public float blinkDuration;
         public AudioClip tomatoSound;
+        public ParticleSystem deathParticle;
         
         private float lastAttackTime;
         private SkinnedMeshRenderer meshRenderer;
@@ -92,9 +93,9 @@ namespace Enemy
             agent.isStopped = true;
             animator.SetTrigger("Dying");
             GetComponent<BoxCollider>().enabled = false;
-            
+            var particle = Instantiate(deathParticle, transform.position, Quaternion.identity);
             await UniTask.WaitForSeconds(1f);
-            
+            Destroy(particle, 0.5f);
             Destroy(gameObject, 0.5f);
         }
 
