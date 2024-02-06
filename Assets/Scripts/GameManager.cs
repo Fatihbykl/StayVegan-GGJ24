@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] iconsUI;
     public GameObject gameOverUI;
     public GameObject youWonUI;
+    public TextMeshProUGUI waveText;
 
     private WeightedList<CardSO> weightedCardList;
     private CardSO[] chosenCards = new CardSO[3];
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             weightedCardList.Add(card, card.weight);
         }
-        
+        AnimateWaveText();
         Choose3RandomCard();
     }
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         playerMovement.joystick.gameObject.SetActive(true);
         Choose3RandomCard();
         Time.timeScale = 1;
+        AnimateWaveText();
     }
 
     public void OpenEndWavePage()
@@ -93,5 +95,10 @@ public class GameManager : MonoBehaviour
             cardsUI[i].transform.Find("Title").GetComponent<TextMeshProUGUI>().text = card.title;
             iconsUI[i].GetComponent<UnityEngine.UI.Image>().sprite = card.icon;
         }
+    }
+
+    private void AnimateWaveText()
+    {
+        waveText.GetComponent<Animator>().SetTrigger("Play");
     }
 }

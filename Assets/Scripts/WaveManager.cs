@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class WaveManager : MonoBehaviour
     public GameObject player;
     public BoxCollider gameBounds;
     public Wave[] waves;
+    public TextMeshProUGUI waveText;
 
     [HideInInspector] public int currentWaveIndex = 0;
     private bool readyToCountDown;
@@ -15,6 +17,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         readyToCountDown = true;
+        waveText.text = $"Wave {currentWaveIndex + 1}";
 
         for (int i = 0; i < waves.Length; i++)
         {
@@ -48,6 +51,7 @@ public class WaveManager : MonoBehaviour
             readyToCountDown = true;
             GameManager.instance.OpenEndWavePage();
             currentWaveIndex++;
+            waveText.text = $"Wave {currentWaveIndex + 1}";
         }
     }
     private IEnumerator SpawnWave()

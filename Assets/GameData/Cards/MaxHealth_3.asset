@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67f59fdde8324641b500962ec19065eb, type: 3}
-  m_Name: Card 5
+  m_Name: MaxHealth_3
   m_EditorClassIdentifier: 
   title: Max Health
   description: Increases your max health
   icon: {fileID: 21300000, guid: c715a9f7f4d044049ad333bf06306ed0, type: 3}
   perks:
-  - {fileID: 11400000, guid: 8401285c4b9ef704783b91859c7bf60a, type: 2}
-  weight: 15
+  - {fileID: 11400000, guid: 81629364d3edfc74eb90b07929e2adb4, type: 2}
+  weight: 40

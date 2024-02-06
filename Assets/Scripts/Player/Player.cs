@@ -2,6 +2,7 @@
 using System.Linq;
 using Interfaces;
 using Microlight.MicroBar;
+using TMPro;
 using UnityEngine;
 
 namespace Player
@@ -14,15 +15,18 @@ namespace Player
         public float projectileSpeed;
         public GameObject projectileSpawnLocation;
         public AudioClip eatingSound;
-        
+
         [Header("Stats")]
-        public int health;
+        [Space(20)]
+        [SerializeField] private int health;
         public int maxHealth;
         public int lockedEnemyCount;
         public int damageReducePercent;
         public float movementSpeed;
+        public int attackDamage;
         public float attackRange;
         public float attackCooldown;
+        public TextMeshProUGUI debugText;
 
         private List<Collider> currentTargets = null;
         private float lastAttackTime = 0;
@@ -39,6 +43,8 @@ namespace Player
 
         private void Update()
         {
+            debugText.text = $"Health: {health}, Max H: {maxHealth}, Tomato C: {lockedEnemyCount}, Armor: {damageReducePercent}, Speed: {movementSpeed}, Damage: {attackDamage}, Range: {attackRange}, Cooldown: {attackCooldown}";
+
             FindClosestEnemies();
             AttackEnemies();
             hpBar.transform.position = new Vector3(transform.position.x - 1, hpBar.transform.position.y,
@@ -50,6 +56,19 @@ namespace Player
             hpBar.SetMaxHealth(maxHealth);
             hpBar.UpdateHealthBar(health);
             playerMovement.speed = movementSpeed;
+        }
+
+        public void AddHealth(int healthValue)
+        {
+            var value = this.health + healthValue;
+            if (value <= this.maxHealth)
+            {
+                this.health = value;
+            }
+            else
+            {
+                this.health = this.maxHealth;
+            }
         }
 
         private void AttackEnemies()
@@ -65,7 +84,9 @@ namespace Player
                 {
                     var direction = (target.transform.position - transform.position).normalized;
                     var force = direction * projectileSpeed;
-                    var projectile = Instantiate(projectilePrefab, projectileSpawnLocation.transform.position, target.transform.rotation);
+                    var projectile = Instantiate(projectilePrefab, projectileSpawnLocation.transform.position,
+                        target.transform.rotation);
+                    projectile.gameObject.GetComponent<Projectile>().damage = attackDamage;
                     projectile.gameObject.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
                 }
 
@@ -96,7 +117,7 @@ namespace Player
 
         public void TakeDamage(int damage)
         {
-            var reducedDamage = damage - ((damage * damageReducePercent) / 100f); 
+            var reducedDamage = damage - ((damage * damageReducePercent) / 100f);
             health -= (int)reducedDamage;
             hpBar.UpdateHealthBar(health);
             AudioManager.instance.PlaySound(eatingSound, 1f);
@@ -112,5 +133,6 @@ namespace Player
             animator.SetTrigger("Dying");
             GameManager.instance.OpenGameOverScreen();
         }
+        
     }
 }

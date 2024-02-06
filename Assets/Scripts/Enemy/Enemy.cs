@@ -86,17 +86,24 @@ namespace Enemy
             await meshRenderer.material.DOColor(Color.white, blinkDuration / 2).ToUniTask();
         }
 
-        private async void Die()
+        private void Die()
         {
             if (this.gameObject == null) { return; }
             
+            // disable movement and collider
             agent.isStopped = true;
-            animator.SetTrigger("Dying");
             GetComponent<BoxCollider>().enabled = false;
-            var particle = Instantiate(deathParticle, transform.position, Quaternion.identity);
-            await UniTask.WaitForSeconds(1f);
-            Destroy(particle, 0.5f);
-            Destroy(gameObject, 0.5f);
+            
+            // start die animation
+            animator.SetTrigger("Dying");
+            
+            // play particle
+            var particlePos = new Vector3(transform.position.x, 2.5f, transform.position.z);
+            var particle = Instantiate(deathParticle, particlePos, Quaternion.identity);
+            
+            // destroy objects after 1 seconds
+            Destroy(particle, 1f);
+            Destroy(gameObject, 1f);
         }
 
         private void OnDestroy()
