@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         playerMovement = player.GetComponent<PlayerMovement>();
         weightedCardList = new WeightedList<CardSO>();
         foreach (var card in cards)
@@ -47,12 +48,14 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         gameOverUI.SetActive(true);
+        CloseEndWavePage();
     }
     
     public void OpenYouWonScreen()
     {
         Time.timeScale = 0;
         youWonUI.SetActive(true);
+        CloseEndWavePage();
     }
 
     public void ChooseCard(int index)
@@ -75,6 +78,11 @@ public class GameManager : MonoBehaviour
         playerMovement.joystick.gameObject.SetActive(false);
         endWavePage.SetActive(true);
     }
+    
+    public void CloseEndWavePage()
+    {
+        endWavePage.SetActive(false);
+    }
 
     private void Choose3RandomCard()
     {
@@ -83,7 +91,6 @@ public class GameManager : MonoBehaviour
             var card = weightedCardList.Next();
             chosenCards[i] = card;
             cardsUI[i].transform.Find("Title").GetComponent<TextMeshProUGUI>().text = card.title;
-            cardsUI[i].transform.Find("Description").GetComponent<TextMeshProUGUI>().text = card.description;
             iconsUI[i].GetComponent<UnityEngine.UI.Image>().sprite = card.icon;
         }
     }

@@ -99,7 +99,7 @@ namespace Player
             var reducedDamage = damage - ((damage * damageReducePercent) / 100f); 
             health -= (int)reducedDamage;
             hpBar.UpdateHealthBar(health);
-            AudioManager.instance.PlaySound(eatingSound);
+            AudioManager.instance.PlaySound(eatingSound, 1f);
             if (health <= 0)
             {
                 Die();

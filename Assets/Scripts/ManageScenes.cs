@@ -7,7 +7,6 @@ public class ManageScenes : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadAsyncScene(sceneName));
-        Time.timeScale = 1;
     }
 
     IEnumerator LoadAsyncScene(string sceneName)

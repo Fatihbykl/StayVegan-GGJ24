@@ -69,7 +69,7 @@ namespace Enemy
         public void TakeDamage(int _damage)
         {
             health -= _damage;
-            AudioManager.instance.PlaySound(tomatoSound);
+            AudioManager.instance.PlaySound(tomatoSound, 1f);
             if (health <= 0)
             {
                 Die();
