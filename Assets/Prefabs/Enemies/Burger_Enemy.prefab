@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   stoppingDistance: 1.5
-  health: 5
+  health: 8
   damage: 20
   attackCooldown: 2
   blinkIntensity: 4

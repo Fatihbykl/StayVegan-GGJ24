@@ -7,9 +7,9 @@ namespace Card
     public class CardSO : ScriptableObject
     {
         public string title;
-        public string description;
         public Sprite icon;
         public Perks[] perks;
         public int weight;
+        public Color outlineColor;
     }
 }

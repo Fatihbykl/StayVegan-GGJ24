@@ -26,12 +26,12 @@ namespace Player
         public int attackDamage;
         public float attackRange;
         public float attackCooldown;
-        public TextMeshProUGUI debugText;
 
         private List<Collider> currentTargets = null;
-        private float lastAttackTime = 0;
         private PlayerMovement playerMovement;
         private Animator animator;
+        private float lastAttackTime = 0;
+        private bool canAttack = false;
 
         private void Start()
         {
@@ -43,8 +43,6 @@ namespace Player
 
         private void Update()
         {
-            debugText.text = $"Health: {health}, Max H: {maxHealth}, Tomato C: {lockedEnemyCount}, Armor: {damageReducePercent}, Speed: {movementSpeed}, Damage: {attackDamage}, Range: {attackRange}, Cooldown: {attackCooldown}";
-
             FindClosestEnemies();
             AttackEnemies();
             hpBar.transform.position = new Vector3(transform.position.x - 1, hpBar.transform.position.y,
@@ -73,13 +71,14 @@ namespace Player
 
         private void AttackEnemies()
         {
-            if (currentTargets == null)
+            if (currentTargets == null && !canAttack)
             {
                 return;
             }
-
+            
             if (Time.time - lastAttackTime >= attackCooldown)
             {
+                canAttack = false;
                 foreach (var target in currentTargets)
                 {
                     var direction = (target.transform.position - transform.position).normalized;
@@ -91,6 +90,7 @@ namespace Player
                 }
 
                 lastAttackTime = Time.time;
+                canAttack = true;
             }
         }
 

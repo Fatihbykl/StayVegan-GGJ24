@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Card;
+using Cysharp.Threading.Tasks;
 using Player;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,8 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject endWavePage;
     public CardSO[] cards;
-    public GameObject[] cardsUI;
-    public GameObject[] iconsUI;
+    public GameObject[] cardsUI, iconsUI, outlines;
     public GameObject gameOverUI;
     public GameObject youWonUI;
     public TextMeshProUGUI waveText;
@@ -92,13 +93,17 @@ public class GameManager : MonoBehaviour
         {
             var card = weightedCardList.Next();
             chosenCards[i] = card;
+            outlines[i].GetComponent<UIOutline>().color = card.outlineColor;
             cardsUI[i].transform.Find("Title").GetComponent<TextMeshProUGUI>().text = card.title;
             iconsUI[i].GetComponent<UnityEngine.UI.Image>().sprite = card.icon;
         }
     }
 
-    private void AnimateWaveText()
+    private async void AnimateWaveText()
     {
+        waveText.gameObject.SetActive(true);
         waveText.GetComponent<Animator>().SetTrigger("Play");
+        await UniTask.WaitForSeconds(3f);
+        waveText.gameObject.SetActive(false);
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Speed
   m_EditorClassIdentifier: 
   title: Speed
-  description: Increases movement speed
   icon: {fileID: 21300000, guid: 26b4d8692c5e74d17bd9dc28bcbe961b, type: 3}
   perks:
   - {fileID: 11400000, guid: 33693a64784c3c9448c317566b9ab34a, type: 2}
   weight: 20
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
