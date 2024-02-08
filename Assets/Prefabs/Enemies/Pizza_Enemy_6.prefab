@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3695239526477199200}
   - component: {fileID: 3388411563548893414}
   m_Layer: 7
-  m_Name: Pizza_Enemy
+  m_Name: Pizza_Enemy_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,13 +236,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bb4db3a5d64d83b38e0d1ad640bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 7
   stoppingDistance: 1.5
-  health: 5
-  damage: 20
+  health: 50
+  damage: 25
   attackCooldown: 2
   blinkIntensity: 4
-  blinkDuration: 0.15
+  blinkDuration: 0.25
   tomatoSound: {fileID: 8300000, guid: 653b5f82883b40d4193bae8ce08b6793, type: 3}
   deathParticle: {fileID: 570832250925526149, guid: 5757503b7a899074489fb428fbb4523e,
     type: 3}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 5400670679169490874}
   - component: {fileID: 726540803515545586}
   - component: {fileID: 4518705674899786941}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

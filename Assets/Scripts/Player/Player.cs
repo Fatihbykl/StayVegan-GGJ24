@@ -31,7 +31,7 @@ namespace Player
         private PlayerMovement playerMovement;
         private Animator animator;
         private float lastAttackTime = 0;
-        private bool canAttack = false;
+        private bool canAttack = true;
 
         private void Start()
         {
@@ -71,7 +71,7 @@ namespace Player
 
         private void AttackEnemies()
         {
-            if (currentTargets == null && !canAttack)
+            if (currentTargets == null || !canAttack)
             {
                 return;
             }
@@ -102,6 +102,7 @@ namespace Player
             {
                 var targets = rangeChecks.OrderBy(n => (n.transform.position - transform.position).sqrMagnitude)
                     .Take(lockedEnemyCount).ToList();
+                
                 currentTargets = targets;
             }
             else

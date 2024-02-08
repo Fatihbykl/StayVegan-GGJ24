@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 2965100799971381093}
   - component: {fileID: 5966042460559650371}
   - component: {fileID: 3498076155596912297}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1355,7 @@ GameObject:
   - component: {fileID: 434772908765285070}
   - component: {fileID: 9007758990685581813}
   m_Layer: 7
-  m_Name: Burger_Enemy
+  m_Name: Burger_Enemy_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,13 +1484,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bb4db3a5d64d83b38e0d1ad640bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 7
   stoppingDistance: 1.5
-  health: 8
-  damage: 20
+  health: 20
+  damage: 10
   attackCooldown: 2
   blinkIntensity: 4
-  blinkDuration: 0.15
+  blinkDuration: 0.25
   tomatoSound: {fileID: 8300000, guid: 653b5f82883b40d4193bae8ce08b6793, type: 3}
   deathParticle: {fileID: 570832250925526149, guid: 5757503b7a899074489fb428fbb4523e,
     type: 3}

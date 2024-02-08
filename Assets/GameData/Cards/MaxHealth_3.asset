@@ -17,4 +17,4 @@ MonoBehaviour:
   perks:
   - {fileID: 11400000, guid: 81629364d3edfc74eb90b07929e2adb4, type: 2}
   weight: 40
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}

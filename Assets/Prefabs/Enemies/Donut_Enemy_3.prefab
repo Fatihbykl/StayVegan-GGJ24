@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 7854452788648478897}
   - component: {fileID: 8696317907728314491}
   - component: {fileID: 689994425102431813}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1673,7 +1673,7 @@ GameObject:
   - component: {fileID: 8363843804501170097}
   - component: {fileID: 1351767497614574047}
   m_Layer: 7
-  m_Name: Donut_Enemy
+  m_Name: Donut_Enemy_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1799,13 +1799,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bb4db3a5d64d83b38e0d1ad640bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 7
   stoppingDistance: 1.5
-  health: 5
-  damage: 20
+  health: 30
+  damage: 15
   attackCooldown: 2
   blinkIntensity: 4
-  blinkDuration: 0.15
+  blinkDuration: 0.25
   tomatoSound: {fileID: 8300000, guid: 653b5f82883b40d4193bae8ce08b6793, type: 3}
   deathParticle: {fileID: 570832250925526149, guid: 5757503b7a899074489fb428fbb4523e,
     type: 3}
