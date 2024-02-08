@@ -8,6 +8,8 @@ public class WaveManager : MonoBehaviour
     public GameObject player;
     public BoxCollider gameBounds;
     public Wave[] waves;
+    public float timeToNextEnemy;
+    public float timeToNextWave;
     public TextMeshProUGUI waveText;
 
     [HideInInspector] public int currentWaveIndex = 0;
@@ -41,7 +43,7 @@ public class WaveManager : MonoBehaviour
         {
             readyToCountDown = false;
 
-            countdown = waves[currentWaveIndex].timeToNextWave;
+            countdown = timeToNextWave;
 
             StartCoroutine(SpawnWave());
         }
@@ -69,7 +71,7 @@ public class WaveManager : MonoBehaviour
                 enemy.transform.position = bounds.center + new Vector3(offsetX, offsetY, offsetZ);
                 enemy.transform.parent = this.gameObject.transform;
                 
-                yield return new WaitForSeconds(waves[currentWaveIndex].timeToNextEnemy);
+                yield return new WaitForSeconds(timeToNextEnemy);
             }
         }
     }
@@ -79,8 +81,5 @@ public class WaveManager : MonoBehaviour
 public class Wave
 {
     public GameObject[] enemies;
-    public float timeToNextEnemy;
-    public float timeToNextWave;
-
     [HideInInspector] public int enemiesLeft;
 }

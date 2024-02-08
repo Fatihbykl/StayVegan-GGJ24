@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 50e0347d981414d189ff77217bc6e69c, type: 3}
   perks:
   - {fileID: 11400000, guid: 39ff85a20fab4d24981ebe11b7c8b111, type: 2}
-  weight: 25
-  type: 0
+  weight: 15
+  type: 2

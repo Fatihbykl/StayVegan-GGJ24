@@ -102,7 +102,7 @@ namespace Enemy
             var particle = Instantiate(deathParticle, particlePos, Quaternion.identity);
             
             // destroy objects after 1 seconds
-            Destroy(particle, 1f);
+            Destroy(particle.gameObject, 1f);
             Destroy(gameObject, 1f);
         }
 

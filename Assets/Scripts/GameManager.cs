@@ -6,6 +6,7 @@ using Player;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
             chosenCards[i] = card;
             outlines[i].GetComponent<UIOutline>().color = card.GetOutlineColor();
             cardsUI[i].transform.Find("Title").GetComponent<TextMeshProUGUI>().text = card.title;
+            cardsUI[i].transform.Find("Rarity").GetComponent<TextMeshProUGUI>().text = card.type.ToString();
             iconsUI[i].GetComponent<UnityEngine.UI.Image>().sprite = card.icon;
         }
     }
