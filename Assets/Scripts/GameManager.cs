@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         {
             var card = weightedCardList.Next();
             chosenCards[i] = card;
-            outlines[i].GetComponent<UIOutline>().color = card.outlineColor;
+            outlines[i].GetComponent<UIOutline>().color = card.GetOutlineColor();
             cardsUI[i].transform.Find("Title").GetComponent<TextMeshProUGUI>().text = card.title;
             iconsUI[i].GetComponent<UnityEngine.UI.Image>().sprite = card.icon;
         }

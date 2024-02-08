@@ -19,11 +19,11 @@ namespace Card
             player.AddHealth(increaseHealth);
             player.maxHealth += increaseMaxHealth;
             player.lockedEnemyCount += increaseAttackCountSameTime;
-            player.damageReducePercent += increaseArmorByPercent;
+            player.ReduceTakenDamage(increaseArmorByPercent);
             player.movementSpeed += increaseMovementSpeed;
             player.attackDamage += increaseAttackDamage;
             player.attackRange += increaseAttackRange;
-            player.attackCooldown -= decreaseAttackCooldown;
+            player.DecreaseCooldown(decreaseAttackCooldown);
         }
     }
 }

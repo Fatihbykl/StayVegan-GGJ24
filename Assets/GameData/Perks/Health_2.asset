@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4806ff10dc4d4df3ab0a91933931f17c, type: 3}
   m_Name: Health_2
   m_EditorClassIdentifier: 
-  increaseHealth: 30
+  increaseHealth: 50
   increaseMaxHealth: 0
   increaseAttackCountSameTime: 0
   increaseArmorByPercent: 0

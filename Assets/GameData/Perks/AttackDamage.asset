@@ -16,7 +16,7 @@ MonoBehaviour:
   increaseMaxHealth: 0
   increaseAttackCountSameTime: 0
   increaseArmorByPercent: 0
-  increaseAttackDamage: 3
+  increaseAttackDamage: 5
   increaseMovementSpeed: 0
   increaseAttackRange: 0
   decreaseAttackCooldown: 0

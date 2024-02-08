@@ -19,4 +19,4 @@ MonoBehaviour:
   increaseAttackDamage: 0
   increaseMovementSpeed: 0
   increaseAttackRange: 0
-  decreaseAttackCooldown: 0.2
+  decreaseAttackCooldown: 0.05

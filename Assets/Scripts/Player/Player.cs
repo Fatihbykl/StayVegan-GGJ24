@@ -19,13 +19,13 @@ namespace Player
         [Header("Stats")]
         [Space(20)]
         [SerializeField] private int health;
+        [SerializeField] private float attackCooldown;
+        [SerializeField] private int damageReducePercent;
         public int maxHealth;
         public int lockedEnemyCount;
-        public int damageReducePercent;
         public float movementSpeed;
         public int attackDamage;
         public float attackRange;
-        public float attackCooldown;
 
         private List<Collider> currentTargets = null;
         private PlayerMovement playerMovement;
@@ -54,6 +54,22 @@ namespace Player
             hpBar.SetMaxHealth(maxHealth);
             hpBar.UpdateHealthBar(health);
             playerMovement.speed = movementSpeed;
+        }
+
+        public void ReduceTakenDamage(int value)
+        {
+            if (damageReducePercent <= 50)
+            {
+                damageReducePercent += value;
+            }
+        }
+
+        public void DecreaseCooldown(float value)
+        {
+            if (attackCooldown >= 0.4f)
+            {
+                attackCooldown -= value;
+            }
         }
 
         public void AddHealth(int healthValue)

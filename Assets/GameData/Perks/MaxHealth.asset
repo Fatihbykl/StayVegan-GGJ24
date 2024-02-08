@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaxHealth
   m_EditorClassIdentifier: 
   increaseHealth: 0
-  increaseMaxHealth: 15
+  increaseMaxHealth: 25
   increaseAttackCountSameTime: 0
   increaseArmorByPercent: 0
   increaseAttackDamage: 0
