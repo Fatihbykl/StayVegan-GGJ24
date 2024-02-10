@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TomatoCount_1
   m_EditorClassIdentifier: 
   title: Tomato Count
-  icon: {fileID: 21300000, guid: 6fc31519aded24a839c1af9e163b6c01, type: 3}
+  icon: {fileID: 21300000, guid: bb7faf4c850ef48cdb33c2bd17737619, type: 3}
   perks:
   - {fileID: 11400000, guid: 4f9b4771c4519054382d3b991c6d499a, type: 2}
   weight: 30

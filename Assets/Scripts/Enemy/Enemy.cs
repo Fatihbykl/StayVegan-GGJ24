@@ -4,6 +4,7 @@ using DG.Tweening;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
+using Util;
 
 namespace Enemy
 {
@@ -74,16 +75,6 @@ namespace Enemy
             {
                 Die();
             }
-            else
-            {
-                StartTakeDamageAnim();
-            }
-        }
-        
-        private async void StartTakeDamageAnim()
-        {
-            await meshRenderer.material.DOColor(Color.red * blinkIntensity, blinkDuration / 2).ToUniTask();
-            await meshRenderer.material.DOColor(Color.white, blinkDuration / 2).ToUniTask();
         }
 
         private void Die()
@@ -96,6 +87,9 @@ namespace Enemy
             
             // start die animation
             animator.SetTrigger("Dying");
+            
+            //shake camera
+            CameraShake.Shake(0.5f, 1f);
             
             // play particle
             var particlePos = new Vector3(transform.position.x, 2.5f, transform.position.z);
